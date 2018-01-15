@@ -23,7 +23,7 @@ function show_status -d "Function to show the current status"
     set pad ""
     end
   if [ -n "$SSH_CLIENT" ]
-      prompt_segment blue white " SSH: "
+      prompt_segment blue black " SSH: "
       set pad ""
     end
 end
