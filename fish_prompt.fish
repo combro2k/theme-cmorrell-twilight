@@ -19,7 +19,7 @@ end
 ## Function to show current status
 function show_status -d "Function to show the current status"
   if [ $RETVAL -ne 0 ]
-    prompt_segment red white " ▲ "
+    prompt_segment red black " ▲ "
     set pad ""
     end
   if [ -n "$SSH_CLIENT" ]
@@ -31,7 +31,7 @@ end
 function show_virtualenv -d "Show active python virtual environments"
   if set -q VIRTUAL_ENV
     set -l venvname (basename "$VIRTUAL_ENV")
-    prompt_segment normal white " ($venvname) "
+    prompt_segment yellow black " ($venvname) "
   end
 end
 
@@ -40,7 +40,7 @@ function show_user -d "Show user"
   if not contains $USER $default_user; or test -n "$SSH_CLIENT"
     set -l host (hostname -s)
     set -l who (whoami)
-    prompt_segment normal yellow " $who"
+    prompt_segment normal red " $who"
 
     # Skip @ bit if hostname == username
     if [ "$USER" != "$HOST" ]
@@ -61,11 +61,11 @@ end
 function show_prompt -d "Shows prompt with cue for current priv"
   set -l uid (id -u $USER)
     if [ $uid -eq 0 ]
-    prompt_segment red white " ! "
+    prompt_segment red black " ! "
     set_color normal
     echo -n -s " "
   else
-    prompt_segment normal white " \$ "
+    prompt_segment normal white " > "
     end
 
   set_color normal

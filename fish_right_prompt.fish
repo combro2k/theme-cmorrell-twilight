@@ -19,8 +19,6 @@ function get_git_status -d "Gets the current git status"
       set_color black
     end
 
-    set_color -b green
-    set_color black
     echo " $ref "
     
     set_color normal
